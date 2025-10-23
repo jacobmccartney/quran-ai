@@ -12,7 +12,7 @@
 
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #eef1fb 0%, #d5def5 45%, #b9c4ed 100%);
+  background: #d5def5;
   min-height: 100vh;
 }
 

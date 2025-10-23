@@ -7,6 +7,7 @@ import './App.css'
 const LOGO_SRC = '/icons/qsai.jpg'
 const WEBHOOK_URL =
   'https://jacobmccartney.app.n8n.cloud/webhook/4091fa09-fb9a-4039-9411-7104d213f601/chat'
+const TITLE_SRC = '/icons/title.png'
 
 function App() {
   useEffect(() => {
@@ -17,7 +18,16 @@ function App() {
       loadPreviousSession: true,
       initialMessages: [
         "Hello, I'm QSAI, your Quran study companion. How can I help you today?"
-      ]
+      ],
+      i18n: {
+		en: {
+			title: '',
+			subtitle: "",
+			footer: '',
+			getStarted: '',
+			inputPlaceholder: '',
+		},
+	},
     })
 
     return () => {
@@ -31,8 +41,7 @@ function App() {
       <img src={LOGO_SRC} alt="QS-AI emblem" className="brand-mark" />
       <main className="layout">
         <header className="masthead">
-          <h1 className="masthead__title">QS-AI</h1>
-          <p className="masthead__badge">Your Quran study companion</p>
+          <img src={TITLE_SRC} alt="QS-AI wordmark" className="masthead__title" />
         </header>
         <section className="chat-card" aria-label="QS-AI chat window">
           <div id="n8n-chat" className="chat-container" />
