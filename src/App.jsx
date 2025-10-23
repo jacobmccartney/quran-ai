@@ -1,56 +1,28 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { createChat } from '@n8n/chat'
 import '@n8n/chat/style.css'
 import './style.css'
 import './App.css'
 
 const LOGO_SRC = '/icons/qsai.jpg'
-
-const CHAT_CONFIG = {
-  webhookUrl:
-    'https://jacobmccartney.app.n8n.cloud/webhook/4091fa09-fb9a-4039-9411-7104d213f601/chat',
-  webhookConfig: {
-    method: 'POST',
-    headers: {},
-  },
-  mode: 'fullscreen',
-  chatInputKey: 'chatInput',
-  chatSessionKey: 'sessionId',
-  loadPreviousSession: true,
-  metadata: {},
-  showWelcomeScreen: false,
-  defaultLanguage: 'en',
-  initialMessages: [
-    "Hello, I'm QSAI, your Quran study assistant. How can I help you today?",
-  ],
-  i18n: {
-    en: {
-      title: 'QS-AI',
-      subtitle: 'Your Quran Study Assistant',
-      footer: '',
-      getStarted: 'New Conversation',
-      inputPlaceholder: 'Type your question..',
-      closeButtonTooltip: 'Close chat window',
-    },
-  },
-  enableStreaming: true,
-}
+const WEBHOOK_URL =
+  'https://jacobmccartney.app.n8n.cloud/webhook/4091fa09-fb9a-4039-9411-7104d213f601/chat'
 
 function App() {
-  const chatContainerRef = useRef(null)
-
   useEffect(() => {
-    const container = chatContainerRef.current
-    if (!container) return undefined
-
     const chatApp = createChat({
-      ...CHAT_CONFIG,
-      target: container,
+      webhookUrl: WEBHOOK_URL,
+      target: '#n8n-chat',
+      mode: 'fullscreen',
+      loadPreviousSession: true,
+      initialMessages: [
+        "Hello, I'm QSAI, your Quran study companion. How can I help you today?"
+      ]
     })
 
     return () => {
       chatApp?.unmount?.()
-      container.replaceChildren()
+      document.querySelector('#n8n-chat')?.replaceChildren()
     }
   }, [])
 
@@ -63,7 +35,7 @@ function App() {
           <p className="masthead__badge">Your Quran study companion</p>
         </header>
         <section className="chat-card" aria-label="QS-AI chat window">
-          <div ref={chatContainerRef} className="chat-container" />
+          <div id="n8n-chat" className="chat-container" />
         </section>
       </main>
     </>

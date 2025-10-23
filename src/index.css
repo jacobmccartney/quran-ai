@@ -1,0 +1,21 @@
+:root {
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #430f58;
+  background-color: #d5def5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #eef1fb 0%, #d5def5 45%, #b9c4ed 100%);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
