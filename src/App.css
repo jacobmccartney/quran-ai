@@ -1,0 +1,77 @@
+.brand-mark {
+  position: fixed;
+  top: clamp(0.75rem, 2.2vw, 1.4rem);
+  left: clamp(0.75rem, 2.2vw, 1.4rem);
+  width: clamp(52px, 7vw, 78px);
+  height: auto;
+  border-radius: 18px;
+  z-index: 1000;
+}
+
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.25rem, 1vw, 0.6rem);
+  padding: clamp(0.6rem, 2vw, 1.2rem);
+  box-sizing: border-box;
+}
+
+.masthead {
+  text-align: center;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.masthead__title {
+  width: clamp(220px, 36vw, 420px);
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.masthead__badge {
+  margin: 0 auto;
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #430f58;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.chat-card {
+  flex: 1 1 auto;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.chat-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+  .layout {
+    padding: 1rem;
+  }
+
+  .brand-mark {
+    width: 60px;
+  }
+
+  .masthead__title {
+    width: clamp(180px, 58vw, 240px);
+  }
+
+  .masthead__badge {
+    padding: 0.3rem 0.85rem;
+  }
+}
