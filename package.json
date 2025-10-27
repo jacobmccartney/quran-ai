@@ -9,7 +9,7 @@
     "deploy": "gh-pages -d dist",
     "start": "react-scripts start",
     "dev": "vite",
-    "build": "vite build",
+    "build": "node ./node_modules/vite/bin/vite.js build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
