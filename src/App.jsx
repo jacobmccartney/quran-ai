@@ -4,10 +4,16 @@ import '@n8n/chat/style.css'
 import './style.css'
 import './App.css'
 
-const LOGO_SRC = '/public/icons/qsai.jpg'
+const withBase = (path) => {
+  const base = import.meta.env.BASE_URL?.replace(/\/$/, '') ?? ''
+  const trimmedPath = path.replace(/^\//, '')
+  return `${base}/${trimmedPath}`
+}
+
+const LOGO_SRC = withBase('/icons/qsai.jpg')
 const WEBHOOK_URL =
   'https://jacobmccartney.app.n8n.cloud/webhook/4091fa09-fb9a-4039-9411-7104d213f601/chat'
-const TITLE_SRC = '/public/icons/title.png'
+const TITLE_SRC = withBase('/icons/title.png')
 
 function App() {
   useEffect(() => {
@@ -23,9 +29,9 @@ function App() {
 		en: {
 			title: '',
 			subtitle: "",
-			footer: '',
+			footer: 'QuranScholarAI',
 			getStarted: '',
-			inputPlaceholder: '',
+			inputPlaceholder: 'Ask me anything about the Quran...',
 		},
 	},
     })
