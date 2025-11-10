@@ -12,7 +12,7 @@ const withBase = (path) => {
 
 const LOGO_SRC = withBase('/icons/qsai.jpg')
 const WEBHOOK_URL =
-  'https://jacobmccartney.app.n8n.cloud/webhook/4091fa09-fb9a-4039-9411-7104d213f601/chat'
+  'https://jacobmccartney.app.n8n.cloud/webhook/4d3361b5-ff77-43f2-8337-b302988d2a7b/chat'
 const TITLE_SRC = withBase('/icons/title.png')
 
 function App() {
