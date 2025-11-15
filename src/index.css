@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+
 :root {
-  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Rubik', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #430f58;
+  color: #000000;
   background-color: #d5def5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,8 +16,10 @@ body {
   margin: 0;
   background: #d5def5;
   min-height: 100vh;
+  font-family: 'Rubik', sans-serif;
 }
 
 #root {
   min-height: 100vh;
+  font-family: 'Rubik', sans-serif;
 }

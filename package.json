@@ -16,7 +16,8 @@
   "dependencies": {
     "@n8n/chat": "^0.62.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-font": "^1.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
