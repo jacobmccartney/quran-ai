@@ -13,6 +13,7 @@ const withBase = (path) => {
 const SIDEBAR_OPEN_ICON = withBase('/icons/open.png')
 const SIDEBAR_CLOSED_ICON = withBase('/icons/close.png')
 const LOGO_ICON = withBase('/icons/logo.png')
+const READ_ICON = withBase('/icons/read.png')
 const WEBHOOK_URL =
   'https://jacobmccartney.app.n8n.cloud/webhook/5757617c-121a-441d-ac4f-496fc058e763/chat'
 const NAV_PAGES = {
@@ -193,11 +194,18 @@ function App() {
     <main className="start-layout">
       <section className="start-screen">
         <div className="start-screen__content">
-          <p className="start-screen__eyebrow">What can I do?</p>
-          <h2>Explore the Quran with guided insights.</h2>
-          <p className="start-screen__lede">
-            Get verse explanations, tafsir cross-references, and journaling prompts tailored to your goals.
-          </p>
+          <div className="start-screen__layout">
+            <div className="start-screen__copy">
+              <p className="start-screen__eyebrow">What can I do?</p>
+              <h2>Explore the Quran with guided insights.</h2>
+              <p className="start-screen__lede">
+                Get verse explanations, tafsir cross-references, and journaling prompts tailored to your goals.
+              </p>
+            </div>
+            <div className="start-screen__illustration" aria-hidden="true">
+              <img src={READ_ICON} alt="" />
+            </div>
+          </div>
           <ul className="start-screen__features">
             <li>
               <strong>Classical Tafsir:</strong> Al-Qurtubi, Al-Tabari, Ibn Kathir, and As-Sa'di
