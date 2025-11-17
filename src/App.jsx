@@ -12,6 +12,7 @@ const withBase = (path) => {
 
 const SIDEBAR_OPEN_ICON = withBase('/icons/open.png')
 const SIDEBAR_CLOSED_ICON = withBase('/icons/close.png')
+const LOGO_ICON = withBase('/dist/icons/logo.png')
 const WEBHOOK_URL =
   'https://jacobmccartney.app.n8n.cloud/webhook/377c928a-7c9a-47bd-a6bf-f6a2e64afbd4/chat'
 function App() {
@@ -40,7 +41,7 @@ function App() {
           subtitle: '',
           footer: 'QuranScholarAI',
           getStarted: '',
-          inputPlaceholder: 'Ask me anything about the Quran...'
+          inputPlaceholder: 'Ask me anything...'
         }
       }
     })
@@ -53,8 +54,13 @@ function App() {
 
   const topPane = (
     <section className="top-pane">
-      <h1 className="top-pane__title">QuranScholarAI</h1>
-      <p className="top-pane__subtitle">Your Quran Study Companion</p>
+      <div className="top-pane__brand">
+        <img src={LOGO_ICON} alt="" className="top-pane__logo" aria-hidden="true" />
+        <div className="top-pane__copy">
+          <h1 className="top-pane__title top-pane__title-highlight">QuranScholarAI</h1>
+          <p className="top-pane__subtitle">Your Quran Study Companion</p>
+        </div>
+      </div>
     </section>
   )
 
@@ -72,10 +78,10 @@ function App() {
               </p>
               <ul className="start-screen__features">
                 <li>
-                  <strong>Contextual Tafsir:</strong> Surface classical commentaries for any ayah within seconds.
+                  <strong>Classical Tafsir:</strong> Al-Qurtubi, Al-Tabari, Ibn Kathir, and As-Sa'di
                 </li>
                 <li>
-                  <strong>Prompt recommendations:</strong> Kickstart reflection with curated study suggestions.
+                  <strong>Prompt recommendations:</strong> Kickstart reflection with simple study suggestions.
                 </li>
                 <li>
                   <strong>Practical guidance:</strong> Ask life questions and receive Quran-centric direction.
@@ -96,7 +102,7 @@ function App() {
       {topPane}
       <button
         type="button"
-        className="brand-mark"
+        className={`brand-mark${isSidebarOpen ? ' brand-mark--open' : ''}`}
         onClick={toggleSidebar}
         aria-pressed={isSidebarOpen}
         aria-expanded={isSidebarOpen}
@@ -133,6 +139,13 @@ function App() {
             <li>Who is the Prophet Muhammed?</li>
             <li>What can I eat and drink as a Muslim?</li>
           </ul>
+           <p className="feature-pane__subheading">Study Questions:</p>
+           <ul className="feature-pane__list">
+            <li>What are some reflection questions for 24:35?</li>
+            <li>Summarize 4:10-20 and give me the common themes.</li>
+            <li>Compare Tafsir Ibn Kathir and Al-Qurtubi on 5:12.</li>
+          </ul>
+            <p className = "feature-pane__subheading"><br/></p>
         </aside>
 
         <div className="primary-column">
