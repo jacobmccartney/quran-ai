@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createChat } from '@n8n/chat'
 import '@n8n/chat/style.css'
 import './style.css'
@@ -15,15 +15,93 @@ const SIDEBAR_CLOSED_ICON = withBase('/icons/close.png')
 const LOGO_ICON = withBase('/icons/logo.png')
 const WEBHOOK_URL =
   'https://jacobmccartney.app.n8n.cloud/webhook/5757617c-121a-441d-ac4f-496fc058e763/chat'
-function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [hasStarted, setHasStarted] = useState(false)
+const NAV_PAGES = {
+  welcome: 'welcome',
+  chat: 'chat',
+}
+const ADSENSE_CLIENT = 'ca-pub-1032939231392861'
+const ADSENSE_SLOT = '1032939231392861'
 
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev)
-  const handleStart = () => setHasStarted(true)
+const HomeIcon = () => (
+  <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+    <path
+      d="M3.25 11.27 11.05 4a1.27 1.27 0 0 1 1.9 0l7.8 7.27"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M18.25 11.75v7.5a.75.75 0 0 1-.75.75h-3.5v-4.75H10v4.75H6.5a.75.75 0 0 1-.75-.75v-7.5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+const ChatIcon = () => (
+  <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+    <path
+      d="M5 6.5h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4.5l-4.25 3.2a.5.5 0 0 1-.8-.4V16.5H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle cx="9" cy="11.5" r="0.9" fill="currentColor" />
+    <circle cx="12.5" cy="11.5" r="0.9" fill="currentColor" />
+    <circle cx="16" cy="11.5" r="0.9" fill="currentColor" />
+  </svg>
+)
+
+const AdSenseSlot = () => {
+  const adRef = useRef(null)
 
   useEffect(() => {
-    if (!hasStarted) {
+    if (!adRef.current) {
+      return
+    }
+
+    try {
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+    } catch (error) {
+      // Gracefully ignore AdSense errors to avoid breaking the UI
+      // eslint-disable-next-line no-console
+      console.error('AdSense error', error)
+    }
+  }, [])
+
+  return (
+    <ins
+      ref={adRef}
+      className="adsbygoogle"
+      style={{ display: 'block', width: '100%', minHeight: '250px' }}
+      data-ad-client={ADSENSE_CLIENT}
+      data-ad-slot={ADSENSE_SLOT}
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
+  )
+}
+
+function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [activePage, setActivePage] = useState(NAV_PAGES.welcome)
+
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev)
+  const isChatPage = activePage === NAV_PAGES.chat
+  const navItems = [
+    { id: NAV_PAGES.welcome, label: 'Welcome', Icon: HomeIcon },
+    { id: NAV_PAGES.chat, label: 'Chat', Icon: ChatIcon },
+  ]
+
+  useEffect(() => {
+    if (!isChatPage) {
       return undefined
     }
 
@@ -51,7 +129,7 @@ function App() {
       chatApp?.unmount?.()
       document.querySelector('#n8n-chat')?.replaceChildren()
     }
-  }, [hasStarted])
+  }, [isChatPage])
 
   const topPane = (
     <section className="top-pane">
@@ -64,43 +142,41 @@ function App() {
       </div>
     </section>
   )
+  const pageSwitcherPane = (
+    <section className="page-switcher-pane" aria-label="Navigate between welcome and chat">
+      <div className="page-switcher-pane__inner">
+        {navItems.map(({ id, label, Icon }) => {
+          const isActive = activePage === id
+          return (
+            <button
+              key={id}
+              type="button"
+              className={`page-switcher-pane__btn${isActive ? ' page-switcher-pane__btn--active' : ''}`}
+              onClick={() => setActivePage(id)}
+              aria-current={isActive ? 'page' : undefined}
+              aria-label={label}
+              title={label}
+            >
+              <span className="page-switcher-pane__icon" aria-hidden="true">
+                <Icon />
+              </span>
+              <span className="sr-only">{label}</span>
+            </button>
+          )
+        })}
+      </div>
+    </section>
+  )
+  const adSection = (
+    <section className="adsense-panel" aria-label="Sponsored content">
+      <div className="adsense-panel__frame">
+        <AdSenseSlot />
+      </div>
+    </section>
+  )
 
-  if (!hasStarted) {
-    return (
-      <>
-        {topPane}
-        <main className="start-layout">
-          <section className="start-screen">
-            <div className="start-screen__content">
-              <p className="start-screen__eyebrow">What can I do?</p>
-              <h2>Explore the Quran with guided insights.</h2>
-              <p className="start-screen__lede">
-                Get verse explanations, tafsir cross-references, and journaling prompts tailored to your goals.
-              </p>
-              <ul className="start-screen__features">
-                <li>
-                  <strong>Classical Tafsir:</strong> Al-Qurtubi, Al-Tabari, Ibn Kathir, and As-Sa'di
-                </li>
-                <li>
-                  <strong>Prompt recommendations:</strong> Kickstart reflection with simple study suggestions.
-                </li>
-                <li>
-                  <strong>Practical guidance:</strong> Ask life questions and receive Quran-centric direction.
-                </li>
-              </ul>
-              <button type="button" className="start-screen__cta" onClick={handleStart}>
-                Start Chatting
-              </button>
-            </div>
-          </section>
-        </main>
-      </>
-    )
-  }
-
-  return (
+  const centerContent = isChatPage ? (
     <>
-      {topPane}
       <button
         type="button"
         className={`brand-mark${isSidebarOpen ? ' brand-mark--open' : ''}`}
@@ -160,6 +236,40 @@ function App() {
           </section>
         </div>
       </main>
+    </>
+  ) : (
+    <main className="start-layout">
+      <section className="start-screen">
+        <div className="start-screen__content">
+          <p className="start-screen__eyebrow">What can I do?</p>
+          <h2>Explore the Quran with guided insights.</h2>
+          <p className="start-screen__lede">
+            Get verse explanations, tafsir cross-references, and journaling prompts tailored to your goals.
+          </p>
+          <ul className="start-screen__features">
+            <li>
+              <strong>Classical Tafsir:</strong> Al-Qurtubi, Al-Tabari, Ibn Kathir, and As-Sa'di
+            </li>
+            <li>
+              <strong>Prompt recommendations:</strong> Kickstart reflection with simple study suggestions.
+            </li>
+            <li>
+              <strong>Practical guidance:</strong> Ask life questions and receive Quran-centric direction.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  )
+
+  return (
+    <>
+      {topPane}
+      <div className="content-shell">
+        {pageSwitcherPane}
+        <div className="content-shell__main">{centerContent}</div>
+        {adSection}
+      </div>
     </>
   )
 }

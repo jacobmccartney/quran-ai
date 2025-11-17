@@ -29,7 +29,7 @@ body {
   width: var(--brand-mark-width);
   padding: 0.35rem;
   border: none;
-  border-radius: 14px 0 0 14px;
+  border-radius: 0;
   background-color: var(--qsai-sunrise);
   box-shadow: 0 8px 20px rgba(84, 76, 76, 0.24);
   cursor: pointer;
@@ -57,7 +57,7 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 10px;
+  border-radius: 0;
   pointer-events: none;
 }
 
@@ -85,6 +85,101 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
+.content-shell {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0 0 clamp(1rem, 3vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.content-shell__main {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.page-switcher-pane {
+  flex: 0 0 auto;
+  padding-top: 0.4rem;
+  margin-right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: sticky;
+  top: clamp(6rem, 10vw, 8.5rem);
+}
+
+.page-switcher-pane__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.45rem, 1.1vw, 0.9rem);
+  padding: clamp(0.35rem, 1vw, 0.7rem);
+  min-width: clamp(60px, 6vw, 100px);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 24px rgba(84, 76, 76, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.page-switcher-pane__btn {
+  width: clamp(44px, 3.6vw, 58px);
+  height: clamp(44px, 3.6vw, 58px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(26, 149, 125, 0.35);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--qsai-forest);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease,
+    border-color 0.2s ease;
+}
+
+.page-switcher-pane__btn--active {
+  background: var(--qsai-forest);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 25px rgba(26, 149, 125, 0.3);
+}
+
+.page-switcher-pane__btn:not(.page-switcher-pane__btn--active):hover {
+  background: rgba(159, 209, 192, 0.5);
+  color: #000;
+  transform: translateY(-1px);
+}
+
+.page-switcher-pane__btn:focus-visible {
+  outline: 3px solid rgba(246, 170, 142, 0.9);
+  outline-offset: 3px;
+}
+
+.page-switcher-pane__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-switcher-pane__icon svg {
+  width: clamp(20px, 2.5vw, 26px);
+  height: clamp(20px, 2.5vw, 26px);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .top-pane__brand {
   display: flex;
   align-items: center;
@@ -92,8 +187,8 @@ body {
 }
 
 .top-pane__logo {
-  width: clamp(48px, 6vw, 72px);
-  height: clamp(48px, 6vw, 72px);
+  width: clamp(40px, 5vw, 60px);
+  height: clamp(40px, 5vw, 60px);
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 8px 18px rgba(84, 76, 76, 0.25);
@@ -109,7 +204,7 @@ body {
 
 .top-pane__title {
   margin: 0;
-  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
   letter-spacing: 0.04em;
 }
 
@@ -119,8 +214,69 @@ body {
 
 .top-pane__subtitle {
   margin: 0;
-  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
   opacity: 0.85;
+}
+
+.adsense-panel {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.adsense-panel__frame {
+  width: min(320px, 28vw);
+  min-height: 250px;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 12px 28px rgba(84, 76, 76, 0.18);
+  padding: clamp(0.4rem, 1vw, 0.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.adsense-panel__frame .adsbygoogle {
+  display: block !important;
+  width: 100% !important;
+  min-height: 230px !important;
+}
+
+@media (max-width: 720px) {
+  .content-shell {
+    flex-direction: column;
+    padding: 0 0 clamp(1rem, 4vw, 2.5rem);
+  }
+
+  .page-switcher-pane {
+    width: 100%;
+    justify-content: center;
+    position: static;
+    padding-top: 0;
+    margin-right: 0;
+  }
+
+  .page-switcher-pane__inner {
+    flex-direction: row;
+    border-radius: 0;
+    min-width: auto;
+  }
+
+  .adsense-panel {
+    width: 100%;
+    justify-content: center;
+    padding-top: 0.6rem;
+    margin-left: 0;
+  }
+
+  .adsense-panel__frame {
+    width: min(100%, 360px);
+  }
 }
 
 .start-layout {
@@ -143,7 +299,7 @@ body {
   max-width: 720px;
   width: 100%;
   background: rgba(255, 255, 255, 0.85);
-  border-radius: 18px;
+  border-radius: 0;
   padding: clamp(1.5rem, 4vw, 3rem);
   box-shadow: 0 40px 70px rgba(84, 76, 76, 0.2);
   border: 1px solid rgba(84, 76, 76, 0.1);
@@ -182,7 +338,7 @@ body {
 .start-screen__features li {
   background: rgba(159, 209, 192, 0.3);
   border: 1px solid rgba(26, 149, 125, 0.2);
-  border-radius: 10px;
+  border-radius: 0;
   padding: 0.85rem 1rem;
   color: #1a957d;
 }
@@ -212,7 +368,7 @@ body {
 .feature-pane {
   grid-column: 2;
   grid-row: 1 / span 3;
-  border-radius: 18px 0 0 18px;
+  border-radius: 0;
   background: var(--qsai-forest);
   color: #fff;
   padding: clamp(1.25rem, 3vw, 2.25rem);
@@ -265,7 +421,7 @@ body {
 .feature-pane__list li {
   background: rgba(247, 158, 84, 0.15);
   border: 1px solid rgba(159, 209, 192, 0.5);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 0.85rem;
   line-height: 1.4;
   color: #fff;
@@ -281,7 +437,7 @@ body {
     rgba(159, 209, 192, 0.9) 0%,
     rgba(246, 170, 142, 0.85) 100%
   );
-  border-radius: 20px;
+  border-radius: 0;
   padding: clamp(1.2rem, 3vw, 2.5rem);
   box-shadow: 0 14px 32px rgba(84, 76, 76, 0.2);
   border: 1px solid rgba(84, 76, 76, 0.15);
@@ -290,7 +446,7 @@ body {
 .chat-card {
   width: 100%;
   background: var(--qsai-seafoam);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: inset 0 0 0 2px rgba(26, 149, 125, 0.2), 0 12px 30px rgba(84, 76, 76, 0.2);
   padding: clamp(0.5rem, 1.2vw, 1rem);
   display: flex;
@@ -300,13 +456,13 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
   border: 2px solid rgba(84, 76, 76, 0.15);
 }
 
 .bottom-pane {
-  border-radius: 14px;
+  border-radius: 0;
   background: var(--qsai-sunrise);
   color: #000;
   border: 1px solid rgba(84, 76, 76, 0.15);
