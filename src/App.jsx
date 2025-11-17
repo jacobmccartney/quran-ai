@@ -12,7 +12,7 @@ const withBase = (path) => {
 
 const SIDEBAR_OPEN_ICON = withBase('/icons/open.png')
 const SIDEBAR_CLOSED_ICON = withBase('/icons/close.png')
-const LOGO_ICON = withBase('/dist/icons/logo.png')
+const LOGO_ICON = withBase('/icons/logo.png')
 const WEBHOOK_URL =
   'https://jacobmccartney.app.n8n.cloud/webhook/377c928a-7c9a-47bd-a6bf-f6a2e64afbd4/chat'
 function App() {
