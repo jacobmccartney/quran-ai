@@ -110,6 +110,7 @@ function App() {
       target: '#n8n-chat',
       mode: 'fullscreen',
       loadPreviousSession: true,
+      showWelcomeScreen: false,
       initialMessages: [
         "Hello, I'm QSAI, your Quran study companion. How can I help you today?"
       ],
@@ -117,8 +118,8 @@ function App() {
         en: {
           title: '',
           subtitle: '',
-          footer: 'QuranScholarAI',
-          getStarted: '',
+          footer: '',
+          getStarted: 'Start Chat',
           inputPlaceholder: 'Ask me anything...'
         }
       },
@@ -176,67 +177,52 @@ function App() {
   )
 
   const centerContent = isChatPage ? (
-    <>
-      <button
-        type="button"
-        className={`brand-mark${isSidebarOpen ? ' brand-mark--open' : ''}`}
-        onClick={toggleSidebar}
-        aria-pressed={isSidebarOpen}
-        aria-expanded={isSidebarOpen}
-        aria-label="Toggle prompt recommendations panel"
+    <main className={`layout ${isSidebarOpen ? 'layout--sidebar-open' : ''}`}>
+      <aside
+        className={`feature-pane ${isSidebarOpen ? 'feature-pane--open' : ''}`}
+        aria-label="Prompt recommendations"
       >
-        <img
-          src={isSidebarOpen ? SIDEBAR_CLOSED_ICON : SIDEBAR_OPEN_ICON}
-          alt={isSidebarOpen ? 'Hide prompt recommendations' : 'Show prompt recommendations'}
-        />
-      </button>
-      <main className={`layout ${isSidebarOpen ? 'layout--sidebar-open' : ''}`}>
-        <aside
-          className={`feature-pane ${isSidebarOpen ? 'feature-pane--open' : ''}`}
-          aria-label="Prompt recommendations"
-        >
-          <div className="feature-pane__header">
-            <p className="feature-pane__eyebrow">Prompt recommendations</p>
-            <h2>Boost your study session</h2>
-            <p className="feature-pane__subheading">Ask for verses:</p>
-          </div>
-          <ul className="feature-pane__list">
-            <li>Show me 11:2 in Arabic.</li>
-            <li>Show me 2:1-10 and summarize the key ideas.</li>
-          </ul>
-          <p className="feature-pane__subheading">Ask for Tafsir:</p>
-          <ul className="feature-pane__list">
-            <li>Show me Ibn Kathir Tafsir for 2:16.</li>
-            <li>Give me the key points of Tafsir Al-Qurtubi of 3:12-15.</li>
-          </ul>
-          <p className="feature-pane__subheading">Ask the Quran:</p>
-          <ul className="feature-pane__list">
-            <li>How do I become a Muslim?</li>
-            <li>How do I pray?</li>
-            <li>Who is the Prophet Muhammed?</li>
-            <li>What can I eat and drink as a Muslim?</li>
-          </ul>
-           <p className="feature-pane__subheading">Study Questions:</p>
-           <ul className="feature-pane__list">
-            <li>What are some reflection questions for 24:35?</li>
-            <li>Summarize 4:10-20 and give me the common themes.</li>
-            <li>Compare Tafsir Ibn Kathir and Al-Qurtubi on 5:12.</li>
-          </ul>
-            <p className = "feature-pane__subheading"><br/></p>
-        </aside>
-
-        <div className="primary-column">
-          <section className="chat-card" aria-label="QS-AI chat window">
-            <div id="n8n-chat" className="chat-container" />
-          </section>
-          <section className="bottom-pane" aria-label="Additional QS-AI tools">
-            <div className="bottom-pane__content">
-              <p>Future tools and insights will live here. Stay tuned for additional features.</p>
-            </div>
-          </section>
+        <div className="feature-pane__header">
+          <p className="feature-pane__eyebrow">Prompt recommendations</p>
+          <h2>Boost your study session</h2>
+          <p className="feature-pane__subheading">Ask for verses:</p>
         </div>
-      </main>
-    </>
+        <ul className="feature-pane__list">
+          <li>Show me 11:2 in Arabic.</li>
+          <li>Show me 2:1-10 and summarize the key ideas.</li>
+        </ul>
+        <p className="feature-pane__subheading">Ask for Tafsir:</p>
+        <ul className="feature-pane__list">
+          <li>Show me Ibn Kathir Tafsir for 2:16.</li>
+          <li>Give me the key points of Tafsir Al-Qurtubi of 3:12-15.</li>
+        </ul>
+        <p className="feature-pane__subheading">Ask the Quran:</p>
+        <ul className="feature-pane__list">
+          <li>How do I become a Muslim?</li>
+          <li>How do I pray?</li>
+          <li>Who is the Prophet Muhammed?</li>
+          <li>What can I eat and drink as a Muslim?</li>
+        </ul>
+         <p className="feature-pane__subheading">Study Questions:</p>
+         <ul className="feature-pane__list">
+          <li>What are some reflection questions for 24:35?</li>
+          <li>Summarize 4:10-20 and give me the common themes.</li>
+          <li>Compare Tafsir Ibn Kathir and Al-Qurtubi on 5:12.</li>
+        </ul>
+          <p className = "feature-pane__subheading"><br/></p>
+      </aside>
+
+      <div className="primary-column">
+        <section className="chat-card" aria-label="QS-AI chat window">
+          <div id="n8n-chat" className="chat-container" />
+        </section>
+        <section className="bottom-pane" aria-label="Additional QS-AI tools">
+          <div className="bottom-pane__content">
+            <p>Future tools and insights will live here. Stay tuned for additional features.</p>
+          </div>
+        </section>
+      </div>
+    </main>
   ) : (
     <main className="start-layout">
       <section className="start-screen">
@@ -265,6 +251,19 @@ function App() {
   return (
     <>
       {topPane}
+      <button
+        type="button"
+        className={`brand-mark${isSidebarOpen ? ' brand-mark--open' : ''}`}
+        onClick={toggleSidebar}
+        aria-pressed={isSidebarOpen}
+        aria-expanded={isSidebarOpen}
+        aria-label="Toggle prompt recommendations panel"
+      >
+        <img
+          src={isSidebarOpen ? SIDEBAR_CLOSED_ICON : SIDEBAR_OPEN_ICON}
+          alt={isSidebarOpen ? 'Hide prompt recommendations' : 'Show prompt recommendations'}
+        />
+      </button>
       <div className="content-shell">
         {pageSwitcherPane}
         <div className="content-shell__main">{centerContent}</div>
