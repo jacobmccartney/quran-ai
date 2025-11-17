@@ -43,7 +43,8 @@ function App() {
           getStarted: '',
           inputPlaceholder: 'Ask me anything...'
         }
-      }
+      },
+      enableStreaming: true,
     })
 
     return () => {

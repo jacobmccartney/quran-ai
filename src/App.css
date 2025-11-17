@@ -31,7 +31,7 @@ body {
   border: none;
   border-radius: 14px 0 0 14px;
   background-color: var(--qsai-sunrise);
-  box-shadow: 0 15px 35px rgba(84, 76, 76, 0.28);
+  box-shadow: 0 8px 20px rgba(84, 76, 76, 0.24);
   cursor: pointer;
   transform: translateX(0);
   transition: background-color 0.2s ease, transform 0.3s ease;
@@ -45,7 +45,7 @@ body {
 
 .brand-mark:hover {
   background-color: var(--qsai-rose);
-  box-shadow: 0 18px 38px rgba(84, 76, 76, 0.32);
+  box-shadow: 0 12px 26px rgba(84, 76, 76, 0.28);
 }
 
 .brand-mark:focus-visible {
@@ -81,9 +81,8 @@ body {
   background: rgba(255, 255, 255, 0.2);
   padding: clamp(0.85rem, 2vw, 1.35rem) clamp(1.2rem, 4vw, 3rem);
   color: #fff;
-  box-shadow: 0 12px 25px rgba(84, 76, 76, 0.22);
+  box-shadow: 0 6px 18px rgba(84, 76, 76, 0.18);
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
 }
 
 .top-pane__brand {
@@ -220,7 +219,7 @@ body {
   box-sizing: border-box;
   opacity: 0;
   pointer-events: none;
-  box-shadow: 0 25px 45px rgba(84, 76, 76, 0.2);
+  box-shadow: 0 12px 28px rgba(84, 76, 76, 0.2);
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translateX(100%);
   position: fixed;
@@ -237,7 +236,7 @@ body {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(0);
-  box-shadow: 0 25px 45px rgba(84, 76, 76, 0.35);
+  box-shadow: 0 18px 35px rgba(84, 76, 76, 0.28);
 }
 
 .feature-pane__eyebrow {
@@ -284,9 +283,8 @@ body {
   );
   border-radius: 20px;
   padding: clamp(1.2rem, 3vw, 2.5rem);
-  box-shadow: 0 30px 55px rgba(84, 76, 76, 0.23);
+  box-shadow: 0 14px 32px rgba(84, 76, 76, 0.2);
   border: 1px solid rgba(84, 76, 76, 0.15);
-  backdrop-filter: blur(8px);
 }
 
 .chat-card {
