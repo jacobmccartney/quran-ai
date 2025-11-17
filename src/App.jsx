@@ -14,7 +14,7 @@ const SIDEBAR_OPEN_ICON = withBase('/icons/open.png')
 const SIDEBAR_CLOSED_ICON = withBase('/icons/close.png')
 const LOGO_ICON = withBase('/icons/logo.png')
 const WEBHOOK_URL =
-  'https://jacobmccartney.app.n8n.cloud/webhook/377c928a-7c9a-47bd-a6bf-f6a2e64afbd4/chat'
+  'https://jacobmccartney.app.n8n.cloud/webhook/5757617c-121a-441d-ac4f-496fc058e763/chat'
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
